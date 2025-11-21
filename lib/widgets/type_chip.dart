@@ -25,12 +25,15 @@ class PokemonTypeChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(99),
         border: Border.all(color: _typeColor(), width: 1),
       ),
-      child: Text(
-        type,
-        style: TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.w600,
-          color: _typeColor(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          type,
+          style: TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.w600,
+            color: _typeColor(),
+          ),
         ),
       ),
     );

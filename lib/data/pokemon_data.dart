@@ -2,19 +2,8 @@ import 'package:flutter_application_1/models/pokemon.dart';
 
 final List<Pokemon> datapokemon = [
   Pokemon(
-    name: "Pikachu",
-    image: "assets/pikachu.jpg",
-    type: "Electric",
-    basePower: 55,
-    skills: ["Thunderbolt", "Quick Attack", "Iron Tail", "Electro Ball"],
-    description:
-        "Pikachu adalah Pokémon Electric yang lincah dan sangat terkenal. "
-        "Serangan listriknya mampu mengalahkan lawan yang lebih besar.",
-  ),
-
-  Pokemon(
     name: "Lucario",
-    image: "assets/lucario.jpg",
+    image: "assets/images/lucario.jpg",
     type: "Fighting / Steel",
     basePower: 110,
     skills: ["Aura Sphere", "Bone Rush", "Force Palm", "Extreme Speed"],
@@ -25,7 +14,7 @@ final List<Pokemon> datapokemon = [
 
   Pokemon(
     name: "Dragonite",
-    image: "assets/dragonite.jpg",
+    image: "assets/images/dragonite.jpg",
     type: "Dragon / Flying",
     basePower: 134,
     skills: ["Dragon Claw", "Hurricane", "Thunder Punch", "Hyper Beam"],
@@ -36,7 +25,7 @@ final List<Pokemon> datapokemon = [
 
   Pokemon(
     name: "Gengar",
-    image: "assets/gengar.jpg",
+    image: "assets/images/gengar.jpg",
     type: "Ghost / Poison",
     basePower: 130,
     skills: ["Shadow Ball", "Dark Pulse", "Hypnosis", "Dream Eater"],
@@ -47,7 +36,7 @@ final List<Pokemon> datapokemon = [
 
   Pokemon(
     name: "Snorlax",
-    image: "assets/snorlax.jpg",
+    image: "assets/images/snorlax.jpg",
     type: "Normal",
     basePower: 110,
     skills: ["Body Slam", "Rest", "Heavy Slam", "Crunch"],
@@ -58,7 +47,7 @@ final List<Pokemon> datapokemon = [
 
   Pokemon(
     name: "Jigglypuff",
-    image: "assets/jigglypuff.jpg",
+    image: "assets/images/jigglypuff.jpg",
     type: "Fairy / Normal",
     basePower: 45,
     skills: ["Sing", "Double Slap", "Rollout", "Disarming Voice"],
@@ -69,7 +58,7 @@ final List<Pokemon> datapokemon = [
 
   Pokemon(
     name: "Eevee",
-    image: "assets/eevee.jpg",
+    image: "assets/images/eevee.jpg",
     type: "Normal",
     basePower: 55,
     skills: ["Quick Attack", "Swift", "Bite", "Take Down"],
@@ -80,7 +69,7 @@ final List<Pokemon> datapokemon = [
 
   Pokemon(
     name: "Squirtle",
-    image: "assets/squirtle.jpg",
+    image: "assets/images/squirtle.jpg",
     type: "Water",
     basePower: 48,
     skills: ["Water Gun", "Bubble", "Skull Bash", "Aqua Tail"],
@@ -91,7 +80,7 @@ final List<Pokemon> datapokemon = [
 
   Pokemon(
     name: "Bulbasaur",
-    image: "assets/bulbasaur.jpg",
+    image: "assets/images/bulbasaur.jpg",
     type: "Grass / Poison",
     basePower: 49,
     skills: ["Vine Whip", "Razor Leaf", "Sleep Powder", "Solar Beam"],
@@ -102,7 +91,7 @@ final List<Pokemon> datapokemon = [
 
   Pokemon(
     name: "Charmander",
-    image: "assets/charmander.jpg",
+    image: "assets/images/charmander.jpg",
     type: "Fire",
     basePower: 52,
     skills: ["Flamethrower", "Scratch", "Fire Spin", "Dragon Breath"],
