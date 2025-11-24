@@ -25,6 +25,10 @@ class _pokemonDetailPageState extends State<pokemonDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final pokemon = widget.pokemon;
+    return Scaffold(
+      appBar: AppBar(title: Text(pokemon.name)),
+      body: Column(children: [Center(child: Image.asset(pokemon.image))]),
+    );
   }
 }
