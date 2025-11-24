@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_application_1/data/pokemon_data.dart';
+import 'package:flutter_application_1/models/pokemon.dart';
+import 'package:flutter_application_1/pages/detail_page.dart';
 import 'package:flutter_application_1/widgets/pokemon_card.dart';
 import 'package:flutter_application_1/widgets/pokemon_list_tile.dart';
 
@@ -13,14 +15,36 @@ class PokemonHomePage extends StatefulWidget {
 
 class _PokemonHomePageState extends State<PokemonHomePage> {
   String _searchQuery = '';
-  bool _showDavoriteOnly = false;
+  bool _showFavoriteOnly = false;
   final Set<String> _favorite = {};
   final TextEditingController _searchControler = TextEditingController();
+
+  Future<void> _openDetailPage(pokemon, bool isFav) async {
+    final result = await Navigator.push<bool>(
+      context,
+      MaterialPageRoute(
+        builder: (_) =>
+            (pokemonDetailPage(pokemon: pokemon, isFavorite: isFav)),
+      ),
+    );
+
+    if (result != null) {
+      setState(() {
+        if (result) {
+          _favorite.add(pokemon.name);
+        } else {
+          _favorite.remove(pokemon.name);
+        }
+      });
+    }
+  }
 
   void _toggleFavorite(String PokemonName) {
     setState(() {
       if (_favorite.contains(PokemonName)) {
-      } else {}
+      } else {
+        _favorite.add(PokemonName);
+      }
     });
   }
 
@@ -32,7 +56,7 @@ class _PokemonHomePageState extends State<PokemonHomePage> {
       final matchesSearch = p.name.toLowerCase().contains(q);
 
       // check favorite
-      final matchesFavorite = !_showDavoriteOnly || _favorite.contains(p.name);
+      final matchesFavorite = !_showFavoriteOnly || _favorite.contains(p.name);
 
       return matchesSearch && matchesFavorite;
     }).toList();
@@ -62,6 +86,14 @@ class _PokemonHomePageState extends State<PokemonHomePage> {
                     },
                   ),
                 ),
+                Switch(
+                  value: _showFavoriteOnly,
+                  onChanged: (val) {
+                    setState(() {
+                      _showFavoriteOnly = val;
+                    });
+                  },
+                ),
               ],
             ),
             const SizedBox(height: 10),
@@ -77,9 +109,8 @@ class _PokemonHomePageState extends State<PokemonHomePage> {
                         return PokemonListTile(
                           pokemon: pokemon,
                           IsFavorite: isFav,
-                          onTap: () => () {},
-                          onTapFavorite: () =>
-                              () => _toggleFavorite(pokemon.name),
+                          onTap: () => _openDetailPage(pokemon, isFav),
+                          onTapFavorite: () => _toggleFavorite(pokemon.name),
                         );
                       },
                       itemCount: filtered.length,
@@ -105,7 +136,7 @@ class _PokemonHomePageState extends State<PokemonHomePage> {
                       return PokemonCard(
                         pokemon: pokemon,
                         IsFavorite: isFav,
-                        onTap: () {},
+                        onTap: () => _openDetailPage(pokemon, isFav),
                         onTapFavorite: () => _toggleFavorite(pokemon.name),
                       );
                     },
