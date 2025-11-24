@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_application_1/data/pokemon_data.dart';
 import 'package:flutter_application_1/widgets/pokemon_card.dart';
+import 'package:flutter_application_1/widgets/pokemon_list_tile.dart';
 
 class PokemonHomePage extends StatefulWidget {
   const PokemonHomePage({super.key});
@@ -42,13 +43,48 @@ class _PokemonHomePageState extends State<PokemonHomePage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
-            Row(children: <Widget>[]),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    controller: _searchControler,
+                    decoration: InputDecoration(
+                      hintText: 'Search Pokemon...',
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _searchQuery = value;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 10),
             Expanded(
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   // layar sempit (mobile)
-                  if (constraints.maxWidth < 600) {}
+                  if (constraints.maxWidth < 600) {
+                    return ListView.builder(
+                      itemBuilder: (context, index) {
+                        final pokemon = filtered[index];
+                        final isFav = _favorite.contains(pokemon.name);
+                        return PokemonListTile(
+                          pokemon: pokemon,
+                          IsFavorite: isFav,
+                          onTap: () => () {},
+                          onTapFavorite: () =>
+                              () => _toggleFavorite(pokemon.name),
+                        );
+                      },
+                      itemCount: filtered.length,
+                    );
+                  }
                   // layar lebar (tablet)
                   int count = 2;
                   if (constraints.maxWidth >= 600)
