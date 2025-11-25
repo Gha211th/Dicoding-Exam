@@ -25,10 +25,31 @@ class _pokemonDetailPageState extends State<pokemonDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final pokemon = widget.pokemon;
-    return Scaffold(
-      appBar: AppBar(title: Text(pokemon.name)),
-      body: Column(children: [Center(child: Image.asset(pokemon.image))]),
+    final p = widget.pokemon;
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pop(context, _isFavorite);
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(p.name),
+          actions: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  _isFavorite = !_isFavorite;
+                });
+              },
+              icon: Icon(
+                _isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: _isFavorite ? Colors.pink : Colors.grey,
+              ),
+            ),
+          ],
+        ),
+        body: Column(children: [Center(child: Image.asset(p.image))]),
+      ),
     );
   }
 }
