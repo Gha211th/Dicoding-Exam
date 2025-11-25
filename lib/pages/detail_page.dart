@@ -48,7 +48,12 @@ class _pokemonDetailPageState extends State<pokemonDetailPage> {
             ),
           ],
         ),
-        body: Column(children: [Center(child: Image.asset(p.image))]),
+        body: Column(
+          children: [
+            Center(child: Image.asset(p.image)),
+            Text(p.name),
+          ],
+        ),
       ),
     );
   }
